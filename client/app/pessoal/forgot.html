@@ -1,0 +1,40 @@
+<div class="page-signin" ng-controller="signupCtrl">
+        <div class="bg">
+            <div class="wrapper">
+                <div class="main-body">
+                    <div class="body-inner">
+                        <div class="card bg-white">
+                            <div class="card-content">
+                                <section class="logo text-center">
+                                    <h1><span class="logo"><img src="images/logo2.png" /></span></h1>
+                                </section>
+                                <form name="userForm" class="form-horizontal">
+                                    <fieldset>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Email</label>
+                                                <input placeholder="Digite seu email de cadastro" name="email" type="text" ng-model="user.email" required class="form-control">
+                                                <div ng-messages="userForm.email.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">O preenchimento do email é obrigatório.</div>
+                                                    <div ng-message="notused" class="my-message">Não existe cadastro com esse email.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                <div class="additional-info text-center text-small" ng-visible="msg.hasMsg">
+                                        {{ msg.txtMsg }}
+                                </div>
+                            </div>
+                            <div class="card-action no-border text-right">
+                                <md-button ng-click="voltar()" class="btn-w-md md-primary">Já lembrei</md-button>
+                                <md-button ng-click="redefinir(user)" class="md-raised btn-w-md md-primary">Redefinir</md-button><div class="divider"></div>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+        
+       

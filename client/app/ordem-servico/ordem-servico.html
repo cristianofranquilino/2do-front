@@ -1,0 +1,77 @@
+
+<div class="page page-profile" ng-controller="OrdemServicoCtrl" >
+
+    <div class="row">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Serviços Publicados</h2>
+        </div>
+    </div>
+
+    <div class="divider divider-lg"></div>
+    <div class="row" >
+
+        <div ng-repeat=" endereco in enderecos "  class="col-md-4">
+            <div class="card bg-white">
+                <div class="card-image">
+                    <img src="images/assets/default-no-image.png">
+                    <span class="card-title">Serviço de Elétrica</span>
+                </div>
+                <div class="card-content">
+                    <p>Hey there, I am a very simple card. I am good at containing small bits of information.
+                        I am quite convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action">
+                    <a href="javascript:;" class="color-primary">
+                        <i class="fa fa-pencil"></i>
+                        Alterar
+                    </a>
+                    <a href="javascript:;" class="color-danger">
+                        <i class="fa fa-trash"></i>
+                        Excluir
+                    </a>
+                </div>
+            </div>  
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-white">
+                <div class="card-image">
+                    <img src="images/assets/default-no-image.png">
+                    <span class="card-title">Serviço de Elétrica</span>
+                </div>
+                <div class="card-content">
+                    <p>Hey there, I am a very simple card. I am good at containing small bits of information.
+                        I am quite convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action">
+                    <a href="javascript:;" class="color-primary">
+                        <i class="fa fa-pencil"></i>
+                        Alterar
+                    </a>
+                    <a href="javascript:;" class="color-danger">
+                        <i class="fa fa-trash"></i>
+                        Excluir
+                    </a>
+                </div>
+            </div>  
+        </div>
+
+         <div class="col-sm-4">
+             <div class="card bg-white">
+               <div class="card-content">
+                    <p>
+                        <div class="panel-body text-center">
+                            <md-button ng-click="novo()" class="btn-w-md md-accent">
+                                <span class="fa fa-plus"></span>
+                                Publicar Serviço
+                            </md-button>
+                        </div>
+                    </p>
+                </div>
+            </div>
+         </div>
+    </div>
+
+    <div class="divider divider-lg"></div>
+
+</div>

@@ -1,0 +1,60 @@
+
+<div class="page page-profile" ng-controller="orcamentoCtrl" >
+
+    <div class="row">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Minhas Solitações de Servicos</h2>
+        </div>
+    </div>
+
+    <div class="divider divider-lg"></div>
+    <div class="row" >
+
+        <div ng-repeat=" endereco in enderecos "  class="col-md-4">
+            <div ng-class=" { 'card bg-primary' : endereco.principal, 'card bg-white' : !endereco.principal }  ">
+                <div class="card-content">
+                    <span class="card-title"></span>
+                    <p><i class="fa fa-location-arrow"></i> {{ endereco.etiqueta }} <br />
+                        {{ endereco.logradouro }}, {{ endereco.numero }} - {{ endereco.complemento }} <br />
+                        {{ endereco.cep | cep }} - {{ endereco.bairro }} <br />
+                        {{ endereco.municipio.nome }}/{{ endereco.municipio.estado.sigla }}
+                    </p>
+                </div>
+
+                <div class="card-action">
+                    <a ng-hide='endereco.principal' ng-click="priorizar(endereco)" href="javascript:;">
+                         <i class="fa fa-check"></i>
+                          Selecionar
+                    </a>
+                    <a ng-click="alterar(endereco)" href="javascript:;">
+                         <i class="fa fa-pencil"></i>
+                         Alterar
+                    </a>
+                    <a ng-click="excluir(endereco, $event)" href="javascript:;">
+                        <i class="fa fa-trash"></i>
+                         Excluir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+         <div class="col-sm-4">
+             <div class="card bg-white">
+               <div class="card-content">
+                    <p>
+                        <div class="panel-body text-center">
+                            <md-button ng-click="novo()" class="btn-w-md md-accent">
+                                <span class="fa fa-plus"></span>
+                                Incluir Endereço
+                            </md-button>
+                            <div class="divider"></div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+         </div>
+    </div>
+
+    <div class="divider divider-lg"></div>
+
+</div>

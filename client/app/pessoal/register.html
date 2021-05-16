@@ -1,0 +1,104 @@
+<div class="page" ng-controller="registerCtrl">
+
+    <div class="row ui-section">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Cadastro</h2>
+        </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body padding-xl">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div layout="column" ng-cloak class="md-inline-form inputdemoBasicUsage">
+                                <div layout-padding>
+                                    <div ng-show="formInvalido" class="alert alert-danger">
+                                            <strong>Preenchimento: </strong> Favor verificar o preenchimento do(s) campo(s) abaixo:
+                                        <ul ng-repeat="error in userForm.$error">
+                                            <li>{{ error[0].$name }}</li>
+                                        </ul>
+                                    </div>
+                                    <form name="userForm" class="form-horizontal form-validation">    
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Email</label>
+                                                <md-icon class="zmdi zmdi-email"></md-icon>
+                                                <input readonly="true" class="input-success" ng-model="user.login.email" name="email">
+                                            </md-input-container>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Nome</label>
+                                                <md-icon class="zmdi zmdi-account-o"></md-icon>
+                                                <input ng-model="user.nome" required name="nome">
+                                                <div ng-messages="userForm.nome.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">Nome é obrigatório.</div>
+                                                </div>
+                                            </md-input-container> 
+                                            <md-input-container flex>
+                                                <label>Sobrenome</label>
+                                                <input ng-model="user.sobrenome" required name="sobrenome">
+                                                <div ng-messages="userForm.sobrenome.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">Sobrenome é obrigatório.</div>
+                                                </div>
+                                            </md-input-container>    
+                                        </div>                                     
+                                        <div layout layout-sm="column">
+                                            <md-input-container>
+                                                <label>CPF</label>
+                                                <md-icon class="zmdi zmdi-account-box-mail"></md-icon>
+                                                <input name="cpf" required ng-model="user.cpf" ui-br-cpf-mask>
+                                                <div ng-messages="userForm.cpf.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">CPF é obrigatório.</div>
+                                                    <div ng-message="cpf" class="my-message">CPF inválido.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <md-input-container>
+                                                    <label>Data Nascimento</label>
+                                                    <input name="nascimento" required ng-model="user.dataNascimento" placeholder="dd/mm/aaaa" ui-date-mask="DD/MM/YYYY">
+                                                    <div ng-messages="userForm.nascimento.$error" role="alert" multiple>
+                                                        <div ng-message="required" class="my-message">Data de Nascimento é obrigatória.</div>
+                                                    </div>
+                                                </md-input-container>
+                                        </div>
+
+                                        <div ng-if="!sessao.logado" layout layout-sm="column">
+                                            <md-input-container flex> 
+                                                <label>Senha</label>
+                                                <md-icon class="zmdi zmdi-lock-outline"></md-icon>
+                                                <input type="password" ng-model="user.login.senha" required name="senha" ng-blur="compareSenhas(user.login.senha, confirmPassword)"> 
+                                                <div ng-messages="userForm.senha.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">Senha é obrigatória.</div>
+                                                    <div ng-message="match" class="my-message">As senhas não correspondem.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Confirme a senha</label>
+                                                <input  type="password" ng-model="confirmPassword" required name="senhaConfirm" ng-blur="compareSenhas(user.login.senha, confirmPassword)">
+                                                <div ng-messages="userForm.senhaConfirm.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">Confirmação da senha é obrigatória.</div>
+                                                    <div ng-message="match" class="my-message">As senhas não correspondem.</div>
+                                                </div>
+                                               
+                                            </md-input-container>
+                                        </div>
+                                        
+                                        <div class="text-right">
+                                            <md-input-container> 
+                                                    <md-button ng-if="!sessao.logado" class="md-raised btn-w-md md-primary" ng-click="save(user)">
+                                                        Salvar
+                                                    </md-button><div class="divider"></div>
+                                                    <md-button ng-if="sessao.logado" class="md-raised btn-w-md md-primary" ng-click="alterar(user)">
+                                                        Alterar
+                                                    </md-button><div class="divider"></div>
+                                                </md-input-container>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

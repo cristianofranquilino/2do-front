@@ -1,0 +1,134 @@
+<div class="page" ng-controller="OrdemServicoNovoCtrl">
+                <div class="row ui-section">
+                    <div class="col-lg-8 clearfix">
+                        <h2 class="section-header">Publicar Serviço</h2>
+                    </div>
+                    <div class="col-md-12">
+                            <form name="myForm" flex-gt-xs>
+                        <section class="panel panel-default">
+                            <div class="panel-body padding-xl">
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <section class="ui-angular-wizard">
+                                            <wizard on-finish="finished()">
+                                                <wz-step wz-title="Especialidade" canexit="exitWithAPromise">
+                                                    <h2>Escolha a especialidade do serviço a ser realizado</h2>
+                                                    <div class="ui-wizard-content">
+                                                        <md-autocomplete
+                                                                ng-disabled="false"
+                                                                md-no-cache="true"
+                                                                md-selected-item="especialidadeSelecionada"
+                                                                md-search-text="especialidadeDigitada"
+                                                                md-selected-item-change="onChangeEspecialidade(item)"
+                                                                md-items="item in querySearch(especialidadeDigitada)"
+                                                                md-item-text="item.descricao"
+                                                                md-min-length="0"
+                                                                placeholder="De qual especialidade é o serviço?">
+                                                            <md-item-template>
+                                                                <span md-highlight-text="especialidadeDigitada" md-highlight-flags="^i">{{item.descricao}}</span>
+                                                            </md-item-template>
+                                                            <md-not-found>
+                                                                Nenhuma especialidade "{{ especialidadeDigitada }}" foi encontrada.
+                                                            </md-not-found>
+                                                        </md-autocomplete>
+                                                        
+                                                        <div class="divider divider-lg"></div>
+
+                                                        <div layout="row" layout-wrap flex>
+                                                            <div ng-repeat="item in especialidadeSelecionada.itens">
+                                                                <md-checkbox style="padding-right:10px;" ng-checked="exists(item, ordemServico.itens)" ng-click="toggle(item, ordemServico.itens)" >
+                                                                    {{ item.descricao }} 
+                                                                </md-checkbox>
+                                                                <div class="divider"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ui-wizard-actions">
+                                                        <md-button type="submit" ng-disabled="canGo(ordemServico.itens)" wz-next class="md-raised btn-w-md md-primary">Próximo</md-button>
+                                                    </div>
+                                                </wz-step>
+                                                <wz-step wz-title="Informações" canexit="exitValidation">
+                                                    <h2>Detalhes</h2>
+                                                    <div class="ui-wizard-content">
+                                                        
+                                                        <md-input-container class="md-block">
+                                                            <label>Descrição</label>
+                                                            <textarea placeholder="Forneça o máximo de informações para o profissional." ng-model="user.biography" columns="1" md-maxlength="150"></textarea>
+                                                        </md-input-container>
+
+                                                        <md-input-container class="md-block">
+                                                            <md-button ngf-select="uploadFiles($files)" multiple accept="image/*" class="btn-w-md md-accent"><span class="zmdi zmdi-upload"></span> Selecionar imagens</md-button><div class="divider"></div>
+                                                            <div class="divider"></div>
+                                                            <div layout="row" layout-wrap flex>
+                                                                <div ng-repeat="i in [0,1,2,3]" style="font:smaller">
+                                                                    <img class="thumb" ngf-thumbnail="files[i] || 'images/assets/default-no-image.png'">
+                                                                    <i ng-click="files[i] = null" ng-show="files[i]" class="color-danger zmdi zmdi-delete remove-img" ></i>
+                                                                </div>
+                                                            </div>
+                                                        </md-input-container>
+                                                        
+                                                        <div class="divider divider-lg"></div>
+
+                                                        <md-input-container class="md-block">
+                                                            <label>Quando realizar?</label>
+                                                            <md-select ng-model="ordemServico.quando" aria-label="select">
+                                                                <md-option ng-repeat="quando in quandoOpcoes" ng-value="quando" value="{{quando}}"> {{quando.descricao}} </md-option>
+                                                            </md-select>
+                                                        </md-input-container>
+                                                        
+                                                        <div class="divider"></div>
+                                                        
+                                                        <div class="col-md-6">
+                                                            <datepicker style="padding-bottom:10px;" date-format="dd/MM/yyyy" datepicker-show="{{ordemServico.quando.habilitaDataInicio}}" selector="form-control">
+                                                                <div class="input-group">
+                                                                    <input class="form-control" placeholder="Data de Início"/>
+                                                                    <span class="input-group-addon" style="cursor: pointer">
+                                                                    <i class="fa fa-lg fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </datepicker>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <datepicker style="padding-bottom:10px;" date-format="dd/MM/yyyy" datepicker-show="false" selector="form-control">
+                                                                <div class="input-group">
+                                                                    <input class="form-control"  placeholder="Data de Término" />
+                                                                    <span class="input-group-addon" style="cursor: pointer">
+                                                                    <i class="fa fa-lg fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </datepicker>
+                                                        </div>
+
+                                                        <div class="divider divider-lg"></div>
+
+                                                        <br /><br />
+
+                                                    </div>
+
+                                                    <div class="ui-wizard-actions">
+                                                        <md-button wz-previous="logStep()" class="md-raised btn-w-md">Voltar</md-button>
+                                                        <md-button wz-next="logStep()" class="md-raised btn-w-md md-primary" ng-disabled="!canExit">Próximo</md-button>
+                                                    </div>
+                                                </wz-step>
+                                                <wz-step wz-title="Profissionais">
+                                                    <h2>Escolha alguns profissionais para enviar orçamentos pra você</h2>
+                                                    <div class="ui-wizard-content">
+                                                        <p>Finally this ends!</p>
+                                                    </div>
+                                                    <div class="ui-wizard-actions">
+                                                        <md-button ng-click="goBack()" class="md-raised btn-w-md md-accent">Restart</md-button>
+                                                        <md-button wz-reset class="md-raised btn-w-md md-accent">Reset</md-button>
+                                                        <md-button wz-previous="logStep()"  class="md-raised btn-w-md">BACK</md-button>
+                                                        <md-button wz-next="logStep()" class="md-raised btn-w-md md-primary">Finish</md-button>
+                                                    </div>
+                                                </wz-step>
+                                            </wizard>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>     
+                            </form>
+                    </div>
+                </div>
+            </div>

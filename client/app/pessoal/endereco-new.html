@@ -1,0 +1,103 @@
+<div class="page" ng-controller="enderecoNewCtrl">
+
+    <div class="row ui-section">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Meus Locais</h2>
+        </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body padding-xl">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+
+                            <div layout="column" ng-cloak class="md-inline-form inputdemoBasicUsage">
+                                <div layout-padding>
+                                    <div ng-show="formInvalido" class="alert alert-danger">
+                                        <strong>Preenchimento: </strong> Todos os campos devem ser preenhidos.
+                                    </div>
+                                    <form name="userForm">
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Etiqueta</label>
+                                                <input placeholder="Minha casa, Casa mãe" ng-model="local.identificacao" name="identificacao" required>
+                                                 <div ng-messages="userForm.identificacao.$error" role="alert" multiple>
+                                                        <div ng-message="required" class="my-message">O Lembrete é obrigatório.</div>
+                                                    </div>
+                                            </md-input-container>
+                                        </div>
+
+                                        <div layout layout-sm="column">
+                                            <md-input-container>
+                                                <label>CEP</label>
+                                                <input name="cep" ng-model="local.cep" placeholder="00000-000"
+                                                    required ui-br-cep-mask>
+                                                    <div ng-messages="userForm.cep.$error" role="alert" multiple>
+                                                        <div ng-message="required" class="my-message">CEP é obrigatório.</div>
+                                                        <div ng-message="pattern" class="my-message">CEP Inválido. </div>
+                                                    </div>
+                                            </md-input-container>
+                                            <md-input-container>
+                                                <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/default.cfm" target="_blank">Não sei meu CEP</a>
+                                            </md-input-container>
+                                         </div>
+
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Logradouro</label>
+                                                <input ng-model="local.logradouro" required name="logradouro">
+                                                <div ng-messages="userForm.logradouro.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">O Logradouro é obrigatório.</div>
+                                                </div>
+                                            </md-input-container>    
+                                             <md-input-container>
+                                                <label>Número</label>
+                                                <input ng-model="local.numero" name="numero">
+                                            </md-input-container>    
+
+                                        </div>
+                                        
+                                        <div layout layout-sm="column">                                             
+                                           <md-input-container>
+                                                <label>Bairro</label>
+                                                <input ng-model="local.bairro" name="numero">
+                                            </md-input-container>   
+
+                                            <md-input-container flex>
+                                                <label>Complemento</label>
+                                                <input ng-model="local.complemento" name="complemento">
+                                            </md-input-container>   
+                                        </div>
+
+                                        <div layout layout-sm="column">
+
+                                            <md-input-container class="full-width">
+                                                <label>Estado</label>
+                                                <md-select ng-model="estado" aria-label="select" aria-required="true">
+                                                    <md-option value=""> - Selecione - </md-option>
+                                                    <md-option ng-repeat="estado in estados" value="{{estado.descricao}}"> {{estado.descricao}} </md-option>
+                                                </md-select>
+                                            </md-input-container>
+
+                                            <md-input-container class="full-width">
+                                                <label>Município</label>
+                                                <md-select ng-model="municipioSelecionado" aria-label="select" required="true">
+                                                    <md-option value=""> - Selecione - </md-option>
+                                                    <md-option ng-repeat="municipio in municipios" data-ng-value="municipio.nome" value="municipio"> {{municipio.nome}} </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                        <div class="text-right">
+                                            <md-input-container> 
+                                                <md-button class="md-raised btn-w-md md-primary" ng-click="save(local)">Salvar</md-button><div class="divider"></div>
+                                            </md-input-container>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

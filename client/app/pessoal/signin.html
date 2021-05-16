@@ -1,0 +1,58 @@
+<div class="page-signin" ng-controller="loginCtrl">
+<div class="bg">
+    <div class="wrapper">
+        <div class="main-body">
+            <div class="body-inner">
+                <div class="card bg-white">
+                    <div class="card-content">
+                        <section class="logo text-center">
+                            <h1><span class="logo"><img src="images/logo2.png" /></span></h1>
+                        </section>
+                        <form name="userForm" class="form-horizontal">
+                            <fieldset>
+                                <div layout layout-sm="column">
+                                    <md-input-container flex>
+                                        <label>Email</label>
+                                        <input name="email" type="text" ng-model="user.email" required class="form-control">
+                                        <div ng-messages="userForm.email.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">O preenchimento do email é obrigatório.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div layout layout-sm="column">
+                                    <md-input-container flex>
+                                        <label>Senha</label>
+                                        <input name="senha" type="password" ng-model="user.senha" required class="form-control">
+                                        <div ng-messages="userForm.senha.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">O preenchimento da senha é obrigatório.</div>
+                                            <div ng-message="invalido" class="my-message">Login e/ou senha inválidos.</div>
+                                            <div ng-message="generic" class="my-message">Ocorreu um erro ao realizar o login, por favor tente mais tarde.</div>
+                                        </div>
+                                    </md-input-container>
+                             </div>
+                            </fieldset>
+                        </form>
+                        <div ng-if="error.show"  class="alert alert-danger" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Error:</span>
+                                {{ error.msg }}
+                        </div>
+                    </div>
+                    <div class="card-action no-border text-right">
+                        <md-button ng-click="entrar(user)" class="md-raised btn-w-md md-primary">Entrar</md-button><div class="divider"></div>
+                    </div>
+                </div>
+
+                <div class="additional-info">
+                    <a href="#/pessoal/signup">Cadastrar</a>
+                    <span class="divider-h"></span>
+                    <a href="#/pessoal/forgot">Esqueceu sua senha?</a>
+                </div>
+
+            </div>                
+        </div>
+
+        </div>
+    </div>
+</div>
+

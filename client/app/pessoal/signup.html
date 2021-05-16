@@ -1,0 +1,37 @@
+<div class="page-signup" ng-controller="signupCtrl">
+
+    <div class="wrapper">
+        <div class="main-body">
+            <div class="body-inner">
+
+                <div class="card bg-white">
+                    <div class="card-content">
+                        <section class="logo text-center">
+                            <h1><a href="#/">{{main.brand}}</a></h1>
+                        </section>
+
+                        <form name="userForm" class="form-horizontal">
+                            <fieldset>
+                                <div layout layout-sm="column">
+                                    <md-input-container flex>
+                                        <label>Email</label>
+                                        <input name="email" type="text" ng-model="registerUser.email" required class="form-control">
+                                        <div ng-messages="userForm.email.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">Email é obrigatório.</div>
+                                            <div ng-message="used" class="my-message">Cadastro já realizado com este email.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="card-action no-border text-right">
+                        <md-button ng-click="voltar()" class="btn-w-md md-primary">Já sou cadastrado</md-button>
+                        <md-button ng-click="criar(registerUser)" class="md-raised btn-w-md md-primary">Cadastrar</md-button><div class="divider"></div>
+                    </div>
+                </div> 
+
+            </div>
+        </div>
+    </div>
+</div>

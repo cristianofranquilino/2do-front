@@ -1,0 +1,100 @@
+<div class="page" ng-controller="servicoNovoCtrl">
+
+    <div class="row ui-section">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Cadastre-se</h2>
+        </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body padding-xl">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+
+                            <div layout="column" ng-cloak class="md-inline-form inputdemoBasicUsage">
+                                <div layout-padding>
+                                    <div ng-show="formInvalido" class="alert alert-danger">
+                                        <strong>Preenchimento: </strong> Todos os campos devem ser preenhidos.
+                                    </div>
+                                    <form name="userForm">
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Email</label>
+                                                <input ng-model="user.email" required name="email">
+                                                <div ng-messages="userForm.email.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">Email é obrigatório.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Nome Completo</label>
+                                                <input ng-model="user.nome" required name="nome">
+                                                <div ng-messages="userForm.nome.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">Nome Completo é obrigatório.</div>
+                                                </div>
+                                            </md-input-container>
+
+                                            <md-radio-group class="ui-md-radio-group-inline" ng-model="user.sexo">
+                                                <md-radio-button value="M">Masculino</md-radio-button>
+                                                <md-radio-button value="F">Feminino</md-radio-button>
+                                            </md-radio-group>
+                                        </div>
+
+                                        <div layout layout-sm="column">
+                                            <md-input-container>
+                                                <label>CPF</label>
+                                                <input name="cpf" required ng-model="user.cpf" placeholder="000.000.000-00" md-maxlength="11">
+                                                <div ng-messages="userForm.cpf.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">CPF é obrigatório.</div>
+                                                </div>
+                                            </md-input-container>
+
+                                            <md-input-container>
+                                                <label>Telefone</label>
+                                                <input name="telefone" ng-model="user.telefone" placeholder="(99)99999-9999" required>
+                                                <div ng-messages="userForm.telefone.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">Telefone é obrigatório.</div>
+                                                </div>
+                                            </md-input-container>
+
+                                            <md-datepicker ng-model="user.dataNascimento"  md-placeholder="Nascimento">
+                                            </md-datepicker>
+                                        </div>
+
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Senha</label>
+                                                <input type="password" ng-model="user.senha" required name="senha" ng-blur="compareSenhas(user.senha, confirmPassword)">
+                                                <div ng-messages="userForm.senha.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">Senha é obrigatória.</div>
+                                                    <div ng-message="match" class="my-message">As senhas não correspondem.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Confirme a senha</label>
+                                                <input  type="password" ng-model="confirmPassword" required name="senhaConfirm" ng-blur="compareSenhas(user.senha, confirmPassword)">
+                                                <div ng-messages="userForm.senhaConfirm.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">Confirmação da senha é obrigatória.</div>
+                                                    <div ng-message="match" class="my-message">As senhas não correspondem.</div>
+                                                </div>
+
+                                            </md-input-container>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container>
+                                                <md-button class="md-raised btn-w-md md-accent" ng-click="save(user)"><span class="fa fa-floppy-o"></span> Salvar</md-button><div class="divider"></div>
+                                            </md-input-container>
+                                            <md-input-container>
+                                                <md-button class="md-raised btn-w-md md-accent"><span class="fa fa-home"></span> Cadastrar endereços</md-button><div class="divider"></div>
+                                            </md-input-container>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

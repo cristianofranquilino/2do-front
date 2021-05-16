@@ -1,0 +1,59 @@
+
+<div class="page page-profile" ng-controller="enderecoCtrl" >
+
+    <div class="row">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Meus Locais</h2>
+        </div>
+    </div>
+    
+    <div class="divider divider-lg"></div>
+    <div class="row" >
+        
+        <div ng-repeat="local in locais "  class="col-md-4">
+            <div ng-class=" { 'card bg-primary' : local.principal, 'card bg-white' : !local.principal }  ">
+                <div class="card-content">
+                    <span class="card-title"></span>
+                    <p><i class="fa fa-location-arrow"></i> {{ local.identificacao }} <br />
+                        {{ local.logradouro }}, {{ local.numero }} - {{ local.complemento }} <br />
+                        {{ local.cep | cep }} - {{ local.bairro }} <br />
+                        {{ local.cidade.nome }}/{{ local.cidade.uf }}
+                    </p>
+                </div>
+
+                <div class="card-action">
+                    <a ng-hide='local.principal' ng-click="priorizar(local)" href="javascript:;">
+                         <i class="fa fa-check"></i>
+                          Principal
+                    </a>
+                    <a ng-click="alterar(local)" href="javascript:;">
+                         <i class="fa fa-pencil"></i>
+                         Alterar
+                    </a>
+                    <a ng-click="excluir(local, $event)" href="javascript:;" >
+                        <i class="fa fa-trash"></i>
+                         Excluir
+                    </a>
+                </div>
+            </div>               
+        </div>
+        
+         <div class="col-sm-4">
+             <div class="card bg-white">
+               <div class="card-content">
+                    <p>
+                        <div class="panel-body text-center">
+                            <md-button ng-click="novo()" class="btn-w-md md-accent">
+                                <span class="fa fa-plus"></span>
+                                Incluir Local
+                            </md-button>
+                        </div>
+                    </p>
+                </div>
+            </div>  
+         </div>
+    </div>
+
+    <div class="divider divider-lg"></div>
+
+</div>
